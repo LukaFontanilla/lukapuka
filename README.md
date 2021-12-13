@@ -34,3 +34,15 @@ Currently my website is leveraging global styling, Next's module specific stylin
 * implement `Tailwind`
     * implement for a certain page/route then reconfigure the entire site to use Tailwind (*currently not using module based styling to it's fullest so will likely replace with Tailwind and keep global styles*)
     * research how Tailwind handles dark mode and whether or not to replace the darkMode hook in production
+
+---
+## **Website Directory**
+
+| Route      | Description |
+| ----------- | ----------- |
+| `/pages`      | Contains the pages that are used by next's routing system which include: the main app page, a blogs nested directory, as well as a project page. This also includes my api directory. Most of my data fetching is done at the page level with `getStaticProps` however I have found prototyping api calls via the api route to be really helpful in developing.|
+| `/pages/blogs`   | Contains the nested routes within the blog page. These include: &nbsp; `/blogs/developer` (*which contains the template page to house my developer blogs for dynamic routing*), and `/blogs/short-story` (*which contains the template page to house my short story based blogs*). |
+| `/pages/api` | Contains my api directory, focused on calls out to the contentful, github and notion services. Most of my data fetching is done at the page level with `getStaticProps` however I have found prototyping api calls via the api route to be really helpful in developing.|
+| `/lib`| Contains modules where my third party service calls are defined. Currently those are contentful and notion.|
+| `/context` | Contains a global context module. Currently only used for darkmode shared state. Don't anticipate needing any other globally shared state at the moment. |
+| `/components` | Contains the functional components that are used throughout my website. |
