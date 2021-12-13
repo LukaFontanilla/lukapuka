@@ -5,7 +5,7 @@ import useDarkMode, {DarkMode} from 'use-dark-mode';
 const darkModeContext: React.Context<DarkMode> = createContext();
 
 // what's a good type declaration for the children prop ?
-export const DarkModeWrapper = ({ children }) => {
+export const DarkModeWrapper: React.FC = ({ children }) => {
     /*
     use darkmode hook provides 3 properties:
     - value: the boolean value (true = dark, false = light)
