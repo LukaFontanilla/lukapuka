@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {projectDetails} from '../lib/notion'
 import {useDarkModeContext} from '../context/darkModeContext'
-import ListeningGraph from '../components/ListeningGraph'
+import ListeningChart from '../components/ListeningChart'
 import FollowMe from '../components/FollowMe'
 
 
@@ -41,7 +41,7 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           In my personal life I mostly surf around SC with close friends, hike/run in our coastal mountains, and experiement with different food recipes while dancing with my indoor mini trees to a variety of music.{' '}
           <br/>
           <br />
-          This website is both a personal project with the
+          <blockquote style={{borderLeft: '2px solid #ccc',padding: '0.5em 10px'}}>This website is both a personal project with the</blockquote>
           <code className={styles.codeBody}>{' '}Jamstack</code> but also a place to share who I am what I do and hopefully expose curious minds to neat content and applications.
         </p>
         <p className={styles.description2}>Technologies I work with Daily:</p>
@@ -51,7 +51,7 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           <p className={styles.description2}>2021 Spotify Listening History</p>
           <br />
           <div className={styles.nomobile}>
-          <ListeningGraph />
+          <ListeningChart />
           </div>
         </div>
         <FollowMe darkMode={darkMode}/>
@@ -63,13 +63,13 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           Developer Projects / Github Work In-Progress
         </h3>
         {filteredRepos.map((r:any) => 
-        <div className={styles.box}>
+        <div className={styles.box} key={r.id}>
           <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingLeft: '0.15rem'}}>
             <div className={styles.boxDivider}></div>
             <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
             <div className={styles.footerRow2}>
-              <h2 className="subTitle" key={r.id}>
-              <a href={r.html_url} target="_blank">
+              <h2 className="subTitle">
+              <a href={r.html_url} target="_blank" rel="noreferrer">
               {r.name}
               </a>
               </h2>

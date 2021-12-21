@@ -34,6 +34,9 @@ Currently my website is leveraging global styling, Next's module specific stylin
 * implement `Tailwind`
     * implement for a certain page/route then reconfigure the entire site to use Tailwind (*currently not using module based styling to it's fullest so will likely replace with Tailwind and keep global styles*)
     * research how Tailwind handles dark mode and whether or not to replace the darkMode hook in production
+* implement view count component for blog posts
+    * leverage backend database like planetscale with prisma, firebase or supabase to hold view counts for each blog slug
+    * implement an api route in Next to grab views and increment views in backend db. Additionally use SWR for data fetching in component itself
 
 ---
 ## **Website Directory**

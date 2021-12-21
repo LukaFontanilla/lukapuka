@@ -12,6 +12,7 @@ export const FollowMe: React.FC<FollowMeProps> = ({darkMode}) => {
         <>
         <p className={styles.description2}>Follow Me 👇🏽</p>
         <div style={{maxHeight:'2rem',display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center', alignContent:'space-evenly'}}>
+          <a href="https://github.com/LukaFontanilla" >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={20}
@@ -27,6 +28,7 @@ export const FollowMe: React.FC<FollowMeProps> = ({darkMode}) => {
             />
           </svg>
           &nbsp;<span className="iconText"><b>Github</b></span>
+          </a>
           &nbsp;&nbsp;
           <svg 
             xmlns="http://www.w3.org/2000/svg"

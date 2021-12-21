@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../../styles/Home.module.css'
 import {Entry} from 'contentful'
-import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -32,7 +31,7 @@ interface paramsType {
   }
   
   export async function getStaticPaths() {
-    const entries = await getSpaceEntries()
+    const entries = await getSpaceEntries('shortStory')
     return {
       paths: entries,
       fallback: false
@@ -40,22 +39,22 @@ interface paramsType {
   }
 
   const storyBlog = ({entry}: entryType) => {
-    const router = useRouter()
     const tags = entry.entryData.fields.topicTags.split(',').map((e:string) => e.trim())
   
     return (
       <>
-        <h1 className={styles.title}>
+        <h1 className="subTitle">
           {entry.entryData.fields.title}
         </h1>
         <div className={styles.footerRow}>
-          {tags.map((t:string) => 
-            <p className="footerRowText">{t}</p>
+          {tags.map((t:string, key:string) => 
+            <p key={t} className="blogRowText">{t}</p>
           )}
         </div>
         <div className={styles.grid2}>
-        <Image src={`https:${entry.entryData.fields.thumbnail.fields.file.url}`} width={entry.entryData.fields.thumbnail.fields.file.details.image.width} height={entry.entryData.fields.thumbnail.fields.file.details.image.height } className={styles.imageStyle}/>
-        <ReactMarkdown children={entry.entryData.fields.body} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}/>
+        <Image alt='' src={`https:${entry.entryData.fields.thumbnail.fields.file.url}`} width={entry.entryData.fields.thumbnail.fields.file.details.image.width} height={entry.entryData.fields.thumbnail.fields.file.details.image.height } className={styles.imageStyle}/>
+        <br/>
+        <ReactMarkdown  className="blogText" children={entry.entryData.fields.body} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}/>
         </div>
       </>
     )

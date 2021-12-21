@@ -11,7 +11,7 @@ import {
   import styles from '../styles/Home.module.css'
   import {useDarkModeContext} from '../context/darkModeContext'
   
-  const data = [];
+  const data: any[] = [];
   for (let num = 30; num >= 0; num--) {
     data.push({
       date: subDays(new Date(), num).toISOString().substr(0, 10),
@@ -19,10 +19,10 @@ import {
     });
   }
   
-  export default function ListeningGraph() {
+  export default function ListeningChart() {
     const darkMode = useDarkModeContext()
     return (
-        <ResponsiveContainer width="99%" aspect={3}>
+        <ResponsiveContainer width="99%" aspect={5} debounce={1}>
         <AreaChart data={data}>
           <defs>
             <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -35,6 +35,7 @@ import {
           <Area dataKey="value" stroke={darkMode.value ? "white" : "black"} fill="url(#color)" fillOpacity={10} />
           <XAxis
             dataKey="date"
+            hide={true}
             axisLine={false}
             tickLine={false}
             tickFormatter={(str) => {
@@ -48,7 +49,7 @@ import {
   
           <YAxis
             hide={true}
-            datakey="value"
+            dataKey="value"
             axisLine={false}
             tickLine={false}
             // tickCount={8}
@@ -57,7 +58,7 @@ import {
   {/* #0070f3 */}
           <Tooltip 
           content={<CustomTooltip />} 
-          cursor={{stroke:'white',width:'2rem'}} 
+          cursor={{stroke: darkMode.value ? "white" : "black",width:'2rem'}} 
           animationEasing="ease-in" isAnimationActive={true}
           />
   
@@ -67,7 +68,7 @@ import {
     );
   }
   
-  function CustomTooltip({ active, payload, label }) {
+  function CustomTooltip({ active, payload, label }: {active?:any,payload?:any,label?:any}) {
     if (active) {
       return (
         <div className={styles.tooltip}>

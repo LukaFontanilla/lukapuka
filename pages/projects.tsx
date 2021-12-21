@@ -42,29 +42,29 @@ const Projects = ({completed, inProgress, nextUp, noStatus}: InferGetStaticProps
       <div style={{display:'flex', flexDirection:'column', position:'relative', width:'50%'}}>
       <h2 className="subTitle">Project List</h2>
       {/* <h2 className="subTitle2">🙤 · ┈┈┈┈┈┈ · ꕥ · ┈┈┈┈┈┈ · 🙦</h2><br /> */}
-      <div style={{overflowY:'scroll'}}>
+      <div style={{overflowY:'scroll',marginRight:'1rem'}}>
       <h2 className="subTitle">Completed</h2><br />
        <div>{completed.map((b) =>
         <>
-        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2"><b>{formatUrl(b.url)}</b></div>
+        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2" style={{border: `${project && b.url === project.url ? '1px solid #4D4DFF' : 'none'}`, borderRadius: '10px'}}><b>{formatUrl(b.url)}</b></div>
         </>
       )}</div><br/>
       <h2 className="subTitle">In-Progress</h2><br />
       <div>{inProgress.map((b) =>
         <>
-        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2"><b>{formatUrl(b.url)}</b></div>
+        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2" style={{border: `${project && b.url === project.url ? '1px solid #4D4DFF' : 'none'}`, borderRadius: '10px'}}><b>{formatUrl(b.url)}</b></div>
         </>
       )}</div><br />
       <h2 className="subTitle">Next Up</h2><br />
       <div>{nextUp.map((b) =>
         <>
-        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2"><b>{formatUrl(b.url)}</b></div>
+        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2" style={{border: `${project && b.url === project.url ? '1px solid #4D4DFF' : 'none'}`, borderRadius: '10px'}}><b>{formatUrl(b.url)}</b></div>
         </>
       )}</div><br />
       <h2 className="subTitle">No Status</h2><br />
       <div>{noStatus.map((b) =>
         <>
-        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2"><b>{formatUrl(b.url)}</b></div>
+        <div id={b.block_id} onClick={() => SetProject(b)} className="subTitle2" style={{border: `${project && b.url === project.url ? '1px solid #4D4DFF' : 'none'}`, borderRadius: '10px'}}><b>{formatUrl(b.url)}</b></div>
         </>
       )}</div>
       </div>
@@ -109,7 +109,7 @@ const ProjectCardWrapper = styled.p`
     padding: 0.2rem;
     text-align: center;
     text-decoration: none;
-    border: 0.1rem solid ${props => props.darkMode ? 'white' : 'black'};
+    border: 0.1rem solid ${({darkMode}:{darkMode:boolean}) => darkMode ? 'white' : 'black'};
     border-radius: 2rem;
     transition: color 0.15s ease, border-color 0.15s ease;
     max-width: 6rem;
@@ -167,7 +167,7 @@ const ProjectProperties: React.FC<ProjectPropertiesProps> = ({projectKey, proper
         <p style={{color: `${darkMode.value ? 'white' : 'black'}`}}>{projectKey}</p>
         <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start'}}>
         {properties['multi_select'].map((p:any) =>
-            <ProjectCards color={p.color} darkMode={darkMode.value}>{p.name}</ProjectCards>
+            <ProjectCards key={p.name} color={p.color} darkMode={darkMode.value}>{p.name}</ProjectCards>
         )}
         </div>
         </>
@@ -191,8 +191,15 @@ const Blocks = (block:Record<string, any>, darkMode:DarkMode) => {
     return (
       <div>
         <label >
-          {/* <input type="checkbox" defaultChecked={block.checked} />{" "} */}
-          <li style={{color: `${darkMode.value ? 'white' : 'black'}`}}>{block.text[0]?.plain_text ?? 'No Project Details Defined'}</li>
+          <li style={{color: `${darkMode.value && !block.checked ? 'white' : block.checked ? 'grey' : 'black'}`, textDecoration:`${block.checked && 'line-through'}`}}>{block.text[0]?.plain_text ?? 'No Project Details Defined'}</li>
+        </label>
+      </div>
+    );
+    case "bulleted_list_item":
+    return (
+      <div>
+        <label >
+          <li style={{color: `${darkMode.value ? 'white' : 'black'}`}}>{Array.isArray(block.text) ? block.text.map((t) => t.plain_text + ' ') : block.text[0]?.plain_text ?? 'No Project Details Defined'}</li>
         </label>
       </div>
     );
@@ -200,6 +207,13 @@ const Blocks = (block:Record<string, any>, darkMode:DarkMode) => {
 }
 
 const ProjectDetails = (block: Record<string, any>, darkMode: DarkMode) => {
+  if (block === null) {
+    return (
+      <>
+      No Project Details to Fetch
+      </>
+    )
+  }
   if(!block.parent) {
     return (
       <>

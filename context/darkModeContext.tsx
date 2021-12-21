@@ -2,6 +2,7 @@ import React, {createContext, useContext} from 'react'
 import useDarkMode, {DarkMode} from 'use-dark-mode';
 
 // ignoring error highlighting here, typescript is just complaining about type unknown since no default value is specified
+// @ts-expect-error
 const darkModeContext: React.Context<DarkMode> = createContext();
 
 // what's a good type declaration for the children prop ?
@@ -12,7 +13,7 @@ export const DarkModeWrapper: React.FC = ({ children }) => {
     - enabled: function to toggle dark mode
     - disabled: function to toggle light mode
     */ 
-    const darkMode = useDarkMode(false);
+    const darkMode = useDarkMode(true);
   
     return (
       <darkModeContext.Provider value={darkMode}>

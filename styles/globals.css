@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
   Bitstream Vera Sans Mono, Courier New, monospace;
+  font-size: medium;
   /* background-color:#EAEAEA; */
 }
 
@@ -105,7 +106,7 @@ body.light-mode .blogRowText {
   border: 0.1rem solid #eaeaea;
   border-radius: 2rem;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 6rem;
+  max-width: 8rem;
   font-size: 0.8em;
 }
 
@@ -126,11 +127,19 @@ body.light-mode .blogRowText {
   margin: 1;
 }
 
-body.dark-mode .subTitle2, .description {
+body.dark-mode .blogText {
+  color:white;
+}
+
+body.light-mode .blogText {
+  color:black;
+}
+
+body.dark-mode .subTitle2, .description .blogText {
   color: #EAEAEA;
 }
 
-body.light-mode .subTitle2, .description {
+body.light-mode .subTitle2, .description .blogText{
   color: #333;
 }
 

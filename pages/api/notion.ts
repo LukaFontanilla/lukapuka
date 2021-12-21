@@ -14,13 +14,15 @@ const pageId = process.env.NOTION_PAGE_ID;
 // }
 
 const getPageInfo = async () => {
-    const {results} = await notion.databases.query({ database_id: pageId });
+    const {results} = await notion.databases.query({ database_id: pageId ?? '' });
     // console.log(results)
-    const results1 = await notion.databases.retrieve({ database_id: pageId });
+    const results1 = await notion.databases.retrieve({ database_id: pageId ?? '' });
     // const page = await notion.pages.retrieve({page_id: 'cc149aed-2ef1-4581-8b0d-559b170f7150'})
     // grab properties of each page to grab status title and other Attributes
     // use blocks.children.list on each page to grab the block children, loop through that and grab the different text fields to enrich data
-    const recurse = async (b,parent_id,id) => {
+
+    // to do fix type checks here
+    const recurse: any = async (b:any,parent_id:any,id:any) => {
         let parent;
         if(b.has_children) {
             // let parent;
@@ -48,7 +50,7 @@ const getPageInfo = async () => {
     }
     let pagesData = new Array()
     await Promise.all(results.map(async (p) => {
-        let pageData = new Object()
+        let pageData: any = {}
         try {
             const {results} = await notion.blocks.children.list({block_id: p.id})
             let pageBlocksData;
@@ -81,5 +83,5 @@ export default async function handler(
     const nextUpProj = data.filter((p) => p.properties.Status.select?.name === 'Next Up')
     const noStatusProj = data.filter((p) => p.properties.Status.select?.name === undefined)
 
-    res.status(200).json(completedProj)
+    res.status(200).json(noStatusProj)
   }
