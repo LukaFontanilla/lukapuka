@@ -69,11 +69,13 @@ const Blog = ({entry,markdownContent}: {entry: entryType["entry"], markdownConte
         <div style={{paddingTop: "2rem", padding: "0.5rem", justifyContent: "flex-start"}}>
         <h2 className="subTitle">{entry.entryData.fields.introductionHeader}</h2>
         </div>
+        <div className={styles.cardBlog}>
         <ReactMarkdown className="blogText" children={markdownContent[0]} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}/>
         {/* @ts-expect-error */}
         <ReactMarkdown components={CodeBlock} className="blogText" children={markdownContent[1]} rehypePlugins={[rehypeRaw]} 
         remarkPlugins={[remarkGfm]}
         />
+        </div>
         </div>
       {/* </main>
     </div> */}

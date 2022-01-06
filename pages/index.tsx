@@ -27,22 +27,23 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-        {/* <div style={{maxHeight:'2rem', display: 'flex', flexDirection:'row', justifyContent:'space-between', alignContent:'flex-end',alignItems:'flex-end'}}> */}
+        <div style={{maxHeight:'2rem', display: 'flex', flexDirection:'row', justifyContent:'space-between', alignContent:'flex-end',alignItems:'flex-end'}}>
           <h1 className="title">
             Luka "lukapuka" Fontanilla △▼△▼△▼△▼△
           </h1>
-        {/* </div> */}
+          {/* <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/> */}
+        </div>
         <h2 className="subTitle">
           Customer Engineer, Developer Products @ Google Cloud / Looker
         </h2>
         <p className={styles.codeBody}>
-          <code className={styles.codeBody}>{' '}Hello!</code>
+          Hello!
           I'm Luka. I develop both practical and non practical applications by trade... and work with data. 
           In my personal life I mostly surf around SC with close friends, hike/run in our coastal mountains, and experiement with different food recipes while dancing with my indoor mini trees to a variety of music.{' '}
           <br/>
           <br />
-          <blockquote style={{borderLeft: '2px solid #ccc',padding: '0.5em 10px'}}>This website is both a personal project with the</blockquote>
-          <code className={styles.codeBody}>{' '}Jamstack</code> but also a place to share who I am what I do and hopefully expose curious minds to neat content and applications.
+          {/* <blockquote style={{borderLeft: '2px solid #ccc',padding: '0.5em 10px'}}>This website is both a personal project with the</blockquote> */}
+          Jamstack but also a place to share who I am what I do and hopefully expose curious minds to neat content and applications.
         </p>
         <p className={styles.description2}>Technologies I work with Daily:</p>
         <p className={styles.codeBody}>Looker - BigQuery - Cloud Functions - Python - Javascript - Reactjs - Nextjs - PlanetScale </p>
@@ -51,7 +52,13 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           <p className={styles.description2}>2021 Spotify Listening History</p>
           <br />
           <div className={styles.nomobile}>
+          {!darkMode.value ? 
+          <div className={styles.codeBody}>
           <ListeningChart />
+          </div>
+          :
+          <ListeningChart />  
+          }
           </div>
         </div>
         <FollowMe darkMode={darkMode}/>

@@ -38,11 +38,11 @@ const Projects = ({completed, inProgress, nextUp, noStatus}: InferGetStaticProps
 
   return (
       <>
-      <div style={{display:"flex", justifyContent:'space-between', maxHeight:'30rem', alignContent:'space-between', width:'100%'}}>
+      <div style={{display:"flex", justifyContent:'space-between', maxHeight:'50rem', alignContent:'space-between', width:'100%'}}>
       <div style={{display:'flex', flexDirection:'column', position:'relative', width:'50%'}}>
       <h2 className="subTitle">Project List</h2>
       {/* <h2 className="subTitle2">🙤 · ┈┈┈┈┈┈ · ꕥ · ┈┈┈┈┈┈ · 🙦</h2><br /> */}
-      <div style={{overflowY:'scroll',marginRight:'1rem'}}>
+      <div style={{overflowY:'scroll',marginRight:'1rem'}} className="disableScrollbars">
       <h2 className="subTitle">Completed</h2><br />
        <div>{completed.map((b) =>
         <>
@@ -69,13 +69,13 @@ const Projects = ({completed, inProgress, nextUp, noStatus}: InferGetStaticProps
       )}</div>
       </div>
       </div>
-      <div style={{display:'flex', flexDirection:'column',position:'relative', width:'50%', overflowX:'scroll'}}>
+      <div style={{display:'flex', flexDirection:'column',position:'relative', width:'50%', overflowX:'scroll'}} className="disableScrollbars">
       <h2 className="subTitle">Project Details</h2>
       <div style={{display:'flex', justifyContent:'space-between', alignContent:'flex-start', paddingBottom:'1rem', width:'50%'}}>
       <p className="blogRowText" onClick={()=> SetDisplay('attributes')}>Attributes</p>
       <p className="blogRowText" onClick={()=> SetDisplay('details')}>Details</p>
       </div>
-      <div style={{flexShrink:0, flexBasis:'100%', flex:1, overflowY:'scroll'}}>
+      <div style={{flexShrink:0, flexBasis:'100%', flex:1, overflowY:'scroll'}} className="disableScrollbars">
         {project && display ? 
         <>
           {display === 'details' ? 
@@ -109,7 +109,7 @@ const ProjectCardWrapper = styled.p`
     padding: 0.2rem;
     text-align: center;
     text-decoration: none;
-    border: 0.1rem solid ${({darkMode}:{darkMode:boolean}) => darkMode ? 'white' : 'black'};
+    border: 0.1rem solid ${({darkMode}:{darkMode:boolean}) => darkMode ? '#FDF6F0' : 'black'};
     border-radius: 2rem;
     transition: color 0.15s ease, border-color 0.15s ease;
     max-width: 6rem;

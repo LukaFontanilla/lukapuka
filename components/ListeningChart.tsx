@@ -10,29 +10,146 @@ import {
   import { format, parseISO, subDays } from "date-fns";
   import styles from '../styles/Home.module.css'
   import {useDarkModeContext} from '../context/darkModeContext'
+  import React, {useState, useEffect} from 'react'
+
+  // linear gradient component
+
+  interface GradientProps {
+    gradientString: string,
+    gradientLength: number,
+  }
+
+  const GradientComponent: React.FC<GradientProps> = ({gradientString,gradientLength}: GradientProps) => {
+    const [gradient, setGradient] = useState<string[]>([])
+    const gradientSteps = 100 / (gradientLength/2)
+
+    const generateGradient = (gradientString: string) => {
+      const gradientList = gradientString.split(' ')
+      const startColor = gradientList[0]
+      const stopColor = gradientList[gradientList.length -1]
+      // this loops through the gradient list and generates the gradient paths for each appropriate color (the length of each array should be the same size and equal to the gradientLength Prop) 
+      // gradient direction is top to bottom then back up
+      if(gradientList.length > 0) {
+        for(let i = 0; i < gradientList.length; i++) {
+          if(gradientList[i] === startColor) {
+            const stepOneString = (gradientList[i] + ' ').repeat(gradientLength)
+            setGradient(prevState => [...prevState, stepOneString])
+          } else if(gradientList[i] === stopColor) {
+            const lastStepString = gradientList.map(gradientList.pop,[...gradientList]).join(' ') + ' ' + gradientString
+            setGradient(prevState => [...prevState, lastStepString])
+          } else {
+            const gradientSlice = gradientList.slice(0,i+1)
+            const gradientRemainder = gradientLength - (gradientSlice.length * 2)
+            const finalGradient = gradientSlice.map(gradientSlice.pop,[...gradientSlice]).join(' ') + ' ' + gradientSlice[0].repeat(gradientRemainder) + gradientSlice.join(' ')
+            setGradient(prevState => [...prevState, finalGradient])
+          }
+        }
+      }
+    }
+
+    useEffect(() => {
+      generateGradient(gradientString)
+    },[gradientString])
+
+    return (
+      <>
+      {gradient.map((g,index) =>
+        <stop offset={(index === gradient.length - 1 ? ((index +1) * gradientSteps)-5 : (index +1) * gradientSteps).toString() + '%'} stopColor="#FDF6F0" stopOpacity={1}>
+          <animate attributeName="stop-color" values={g} dur="10s" repeatCount="indefinite" />
+        </stop>
+      )}
+      </>
+    )
+  } 
+  //
+
+
+  // data cleaning for game of thrones
+  interface SeasonData {
+    season: string,
+    screentime: number | unknown
+  }
+  interface ActorData {
+    [k: string]: Array<SeasonData>
+  }
+  const formatSeasons = () => {
+    let actorObj: ActorData = {}
+    data.forEach((d) => {
+      let {actor, totalScreentime, ...rest}:{actor:string, totalScreentime:number,rest:any} = d
+      Object.entries(rest.rest).forEach(([k,v]) => {
+        actorObj[actor].push({season: k, screentime:v})
+      })
+    })
+  }
   
-  const data: any[] = [];
+  
+  //
+  
+  const data1: any[] = [];
   for (let num = 30; num >= 0; num--) {
-    data.push({
+    data1.push({
       date: subDays(new Date(), num).toISOString().substr(0, 10),
       value: 1 + Math.random(),
     });
   }
+
+  const data2: any[] = [];
+  for (let num = 30; num >= 0; num--) {
+    data2.push({
+      date: subDays(new Date(), num).toISOString().substr(0, 10),
+      value: 0.5 + Math.random(),
+    });
+  }
+
+  const getXValueData1 = data => {
+    const index = data1.findIndex(obj => obj.date === data.date);
+    return data1[index].value
+  };
+  
+  const getXValueData2 = data => {
+    const index = data2.findIndex(obj => obj.date === data.date);
+    return data2[index].value
+  };
   
   export default function ListeningChart() {
     const darkMode = useDarkModeContext()
     return (
         <ResponsiveContainer width="99%" aspect={5} debounce={1}>
-        <AreaChart data={data}>
+        <AreaChart data={data1}>
           <defs>
             <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={darkMode.value ? "white" : "black"} stopOpacity={1} />
-              {/* <stop offset="0%" stopColor="black" stopOpacity={0.4} /> */}
-              <stop offset="100%" stopColor={darkMode.value ? "black" : "white"} stopOpacity={1} />
+              {/* <stop offset="14.2%" stopColor={darkMode.value ? "#FDF6F0" : "#332940"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="28.4%" stopColor="black" stopOpacity={1}>
+              <animate attributeName="stop-color" values="#a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="42.6%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="56.8%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="71%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="85.2%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#edf2f5; #dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec; #edf2f5;" dur="20s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="100%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
+              <animate attributeName="stop-color" values="#ffffff; #edf2f5; #dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec; #edf2f5; #ffffff;" dur="20s" repeatCount="indefinite" />
+              </stop> */}
+              <GradientComponent gradientString='#93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec; #edf2f5; #ffffff;' gradientLength={14}/>
+            </linearGradient>
+          </defs>
+          <defs>
+            <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
+            <GradientComponent gradientString='#332940; #51485d; #71697b; #938c9a; #b6b1bb; #dad7dc; #ffffff;' gradientLength={14}/>
             </linearGradient>
           </defs>
           {/* #2451B7 */}
-          <Area dataKey="value" stroke={darkMode.value ? "white" : "black"} fill="url(#color)" fillOpacity={10} />
+          <Area dataKey={getXValueData1} stroke={darkMode.value ? "white" : "black"} fill="url(#color)" fillOpacity={10} />
+          <Area dataKey={getXValueData2} stroke={darkMode.value ? "white" : "black"} fill="url(#color2)" fillOpacity={10} />
           <XAxis
             dataKey="date"
             hide={true}
@@ -58,7 +175,7 @@ import {
   {/* #0070f3 */}
           <Tooltip 
           content={<CustomTooltip />} 
-          cursor={{stroke: darkMode.value ? "white" : "black",width:'2rem'}} 
+          cursor={{stroke: darkMode.value ? "white" : "white",width:'2rem'}} 
           animationEasing="ease-in" isAnimationActive={true}
           />
   
@@ -74,6 +191,7 @@ import {
         <div className={styles.tooltip}>
           <h4>{format(parseISO(label), "eeee, d MMM, yyyy")}</h4>
           <p>${payload[0].value.toFixed(2)} CAD</p>
+          <p>${payload[1].value.toFixed(2)} CAD</p>
         </div>
       );
     }

@@ -8,13 +8,26 @@ body {
   /* background-color:#EAEAEA; */
 }
 
+.disableScrollbars::-webkit-scrollbar {
+  background: transparent; /* Chrome/Safari/Webkit */
+  width: 0px;
+}
+    
+.disableScrollbars {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
 body.dark-mode{
-  background-color: black;
+  /* background-color: black; */
+  background-color: #332940;
+  /* background-color: #A68DAD; */
   /* color:white */
 }
 
 body.light-mode{
-  background-color: white;
+  /* background-color: white; */
+  background-color: #FDF6F0;
   /* color: black */
 }
 
@@ -127,6 +140,10 @@ body.light-mode .blogRowText {
   margin: 1;
 }
 
+.blogText {
+  font-size: 0.8rem;
+}
+
 body.dark-mode .blogText {
   color:white;
 }
@@ -172,13 +189,10 @@ body.light-mode .subTitle2, .description .blogText{
   100%{background-position:10% 0%}
 }
 
-body.light-mode .divider {
-  background: #fc4a1a;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
+/* body.light-mode .divider {} */
 
-body.dark-mode .divider {
+/* body.dark-mode  */
+.divider {
   background: #00F260;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

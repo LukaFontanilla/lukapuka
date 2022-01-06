@@ -11,6 +11,7 @@ export const Nav: React.FC = () => {
             <div className={styles.nav}>
                 <Link href="/" passHref><p className="footerRowText">Home</p></Link>
                 <Link href="/blogs" passHref><p className="footerRowText">Blog</p></Link>
+                <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable}>
                 <Spheres />
