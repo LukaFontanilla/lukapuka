@@ -70,6 +70,7 @@ const Blogs = ({entries}: InferGetStaticPropsType<typeof getStaticProps>) => {
             </>
         ))}
         </div>
+        <hr className="divider"/>
         <h3 className="subTitle">
           Short Stories
         </h3>

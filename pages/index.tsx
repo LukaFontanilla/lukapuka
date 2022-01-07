@@ -54,13 +54,14 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           <div className={styles.nomobile}>
           {!darkMode.value ? 
           <div className={styles.codeBody}>
-          <ListeningChart />
+          <ListeningChart type="animatedGradient"/>
           </div>
           :
-          <ListeningChart />  
+          <ListeningChart type="animatedGradient"/>  
           }
           </div>
         </div>
+        <div style={{marginTop:'1rem'}}></div>
         <FollowMe darkMode={darkMode}/>
         <br />
         <hr className="divider"/>

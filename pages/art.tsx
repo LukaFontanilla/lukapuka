@@ -18,25 +18,29 @@ const Art = () => {
         <h3 className="subTitle">
             Search for Art Pieces by Tag
         </h3>
-        <div className={styles.grid}>
+        <h3 className="subTitle">
+            海の花　Series
+        </h3>
+        <div className={styles.artGrid}>
             <>
-            <div className={styles.card}>
+            <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/>
             </div>
-            <div className={styles.card}>
+            <div className={styles.artCard}>
             <Image src="/ocean-flower copy.png" height="200rem" width="200rem"/>
             </div>
-            <div className={styles.card}>
+            <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/>
             </div>
-            <div className={styles.card}>
+            <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/>
             </div>
-            <div className={styles.card}>
+            <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/>
             </div>
             </>
         </div>
+        <hr className="divider"/>
         </>
     )
 }

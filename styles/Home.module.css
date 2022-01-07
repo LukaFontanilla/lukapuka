@@ -1,6 +1,6 @@
 .container {
-    max-width: 65rem;
-    width: 65rem;
+    max-width: 70rem;
+    width: 70rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,6 +12,21 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+  .blockquote {
+    border-left:0.4rem solid #6A6B6B;
+    border-radius: 0.08rem; 
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    /* padding-right:0.9rem; */
+    padding-left: 0.5rem;
+    /* padding-right: 0.5rem; */
+    font-size: 0.8em;
+    left:0;
+    top:0;
+    color:  #6A6B6B;
+    font-style: italic;
   }
 
   @media screen and (max-width: 150px) {
@@ -244,7 +259,23 @@
     flex: 1;
     align-items: flex-start;
     align-content: flex-start;
-    flex-basis: 50%;
+    flex-basis: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+    overflow-x: auto;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+
+  .artGrid {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-basis: 100%;
     justify-content: space-between;
     /* flex-wrap: wrap; */
     /* flex-direction: row; */
@@ -255,12 +286,14 @@
     width: 100%;
   }
 
-  .grid::-webkit-scrollbar {
+  .grid::-webkit-scrollbar,
+  .artGrid::-webkit-scrollbar {
     background:none ; /* Chrome/Safari/Webkit */
     width: 0px;
   }
       
-  .grid {
+  .grid,
+  .artGrid {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
   }
@@ -316,6 +349,24 @@
     transition: color 0.15s ease, border-color 0.15s ease;
     box-shadow: 0 0.5px 5px 0.5px grey;
     max-width: 18rem;
+    width:30%;
+    height: 45%;
+    min-width: 10rem;
+    /* background-color: white; */
+  }
+
+  .artCard {
+    margin: 0.3rem;
+    padding: 1.2rem;
+    text-align: left;
+    color: inherit;
+    text-decoration: none;
+    /* border: 1px solid #eaeaea; */
+    border: 0.5px transparent #FDF6F0;
+    border-radius: 10px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    box-shadow: 0 0.5px 5px 0.5px grey;
+    max-width: 18rem;
     width:33%;
     height: auto;
     min-width: 10rem;
@@ -342,7 +393,8 @@
   .visCard {
     /* margin: 0.3rem;
     padding: 1.2rem; */
-    padding-bottom: 2rem;
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
     text-align: left;
     color: inherit;
     text-decoration: none;
@@ -373,7 +425,13 @@
   .card:active,
   .cardBlog:hover,
   .cardBlog:focus,
-  .cardBlog:active  {
+  .cardBlog:active,
+  .artCard:hover,
+  .artCard:focus,
+  .artCard:active,
+  .cardBlog:hover,
+  .cardBlog:focus,
+  .cardBlog:active   {
     /* color: #0070f3;
     border-color: #0070f3; */
     border: 0.5px solid #9E7777;
