@@ -11,8 +11,47 @@ import {
   import styles from '../styles/Home.module.css'
   import {useDarkModeContext} from '../context/darkModeContext'
   import React, {useState, useEffect} from 'react'
+  import faker from '@faker-js/faker'
 
   // linear gradient component
+  
+  // implementing data generator class
+  interface DataObj {
+    dateSortKey: any,
+    date: any,
+    usd: number,
+    euro: number
+  }
+
+  class DataGenerator {
+    dataObj: DataObj[]
+    readonly euroCalc: number
+
+    constructor(range: number, usd: number){
+      this.euroCalc = usd * 0.9
+      this.dataObj = this.createDate(range, usd, this.euroCalc)
+    }
+
+    private createDate(dateRange: number, usd: number, euro: number) {
+      const data: DataObj[] = []
+      while (dateRange > 0) {
+        const dateSortKey = faker.date.recent(dateRange)
+        data.push({  
+          dateSortKey: dateSortKey,
+          date: dateSortKey.toISOString().substr(0, 10), 
+          usd: Number(faker.finance.amount(0,usd,2)),
+          euro: Number(faker.finance.amount(0,euro,2))
+        })
+        dateRange--; 
+      }
+      // sort desc
+      return this.sortDesc(data)
+    }
+
+    private sortDesc(data: DataObj[]) {
+      return data.sort((a,b) => a.dateSortKey - b.dateSortKey)
+    }
+  }
 
   interface GradientProps {
     gradientString: string,
@@ -61,62 +100,57 @@ import {
       </>
     )
   } 
-  //
-
-
-  // data cleaning for game of thrones
-  interface SeasonData {
-    season: string,
-    screentime: number | unknown
-  }
-  interface ActorData {
-    [k: string]: Array<SeasonData>
-  }
-  const formatSeasons = () => {
-    let actorObj: ActorData = {}
-    data.forEach((d) => {
-      let {actor, totalScreentime, ...rest}:{actor:string, totalScreentime:number,rest:any} = d
-      Object.entries(rest.rest).forEach(([k,v]) => {
-        actorObj[actor].push({season: k, screentime:v})
-      })
-    })
-  }
-  
   
   //
   
-  const data1: any[] = [];
-  for (let num = 30; num >= 0; num--) {
-    data1.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
-      value: 1 + Math.random(),
-    });
-  }
-
-  const data2: any[] = [];
-  for (let num = 30; num >= 0; num--) {
-    data2.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
-      value: 0.5 + Math.random(),
-    });
-  }
-
-  const getXValueData1 = data => {
-    const index = data1.findIndex(obj => obj.date === data.date);
-    return data1[index].value
-  };
-  
-  const getXValueData2 = data => {
-    const index = data2.findIndex(obj => obj.date === data.date);
-    return data2[index].value
-  };
-  
-  export default function ListeningChart({type}) {
+  export default function ListeningChart({type}:{type:string}) {
     const darkMode = useDarkModeContext()
+    const [range, setRange] = useState<number>()
+    const [randomizedData, setRandomizedData] = useState<DataGenerator>()
+    // const testData = new DataGenerator(15, 600, 350)
+
+    useEffect(() => {
+      const testData = new DataGenerator(15, 600)
+      setRandomizedData(testData)
+    },[])
+
+    useEffect(() => {
+      if(range) {
+        const testData = new DataGenerator(range, 600)
+        setRandomizedData(testData)
+      }
+    },[range])
+
+    const getXValueUSD = data => {
+      if(randomizedData) {
+        const index = randomizedData.dataObj.findIndex(obj => obj.date === data.date);
+        // testData.dataObj.findIndex(obj => console.log(obj.date, data.date));
+        return randomizedData.dataObj[index]?.usd
+      }
+    };
+  
+    const getXValueEuro = data => {
+      if(randomizedData) {
+      const index = randomizedData.dataObj.findIndex(obj => obj.date === data.date);
+      // testData.dataObj.findIndex(obj => console.log(obj.date, data.date));
+      return randomizedData.dataObj[index]?.euro
+      }
+    };
+
     return (
       <div className={styles.visCard}>
+        <div className={styles.footerRow}>
+          {[5,10,15,20,25,30].map((t,key) =>
+          // 
+            <p key={key} className="blogRowText" onClick={(e) => {
+              // casting type otherwise typescript throws error stating that textContent doesn't exist
+              const target = e.target as HTMLElement
+              setRange(Number(target.textContent) ?? 15)
+            }}>{t}</p>
+          )}
+        </div>
         <ResponsiveContainer width="99%" aspect={5} debounce={1}>
-        <AreaChart data={data1}>
+        <AreaChart data={randomizedData?.dataObj}>
         {type === 'animatedGradient' ?
           <>
             <defs>
@@ -139,8 +173,8 @@ import {
           </defs>
         }
           {/* #2451B7 */}
-          <Area dataKey={getXValueData1} stroke={darkMode.value ? "white" : "black"} fill={type === 'animatedGradient' ? "url(#color)" : "url(#color3)"} fillOpacity={10} />
-          {type === 'animatedGradient' && <Area dataKey={getXValueData2} stroke={darkMode.value ? "white" : "black"} fill="url(#color2)" fillOpacity={10} />}
+          <Area dataKey={getXValueUSD} stroke={darkMode.value ? "white" : "black"} fill={type === 'animatedGradient' ? "url(#color)" : "url(#color3)"} fillOpacity={10} />
+          {type === 'animatedGradient' && <Area dataKey={getXValueEuro} stroke={darkMode.value ? "white" : "black"} fill="url(#color2)" fillOpacity={10} />}
           <XAxis
             dataKey="date"
             hide={true}
@@ -157,7 +191,7 @@ import {
   
           <YAxis
             hide={true}
-            dataKey="value"
+            dataKey="usd"
             axisLine={false}
             tickLine={false}
             // tickCount={8}
@@ -178,39 +212,15 @@ import {
   }
   
   function CustomTooltip({ active, payload, label, type }: {active?:any,payload?:any,label?:any,type?:any}) {
+    console.log(payload)
     if (active) {
       return (
         <div className={styles.tooltip}>
           <h4>{format(parseISO(label), "eeee, d MMM, yyyy")}</h4>
-          <p>${payload[0].value.toFixed(2)} CAD</p>
-          {type === 'animatedGradient' && <p>${payload[1].value.toFixed(2)} CAD</p>}
+          <p>${payload[0].payload.usd}</p>
+          {type === 'animatedGradient' && <p>€{payload[0].payload.euro}</p>}
         </div>
       );
     }
     return null;
   }
-
-
-
-
-  {/* <stop offset="14.2%" stopColor={darkMode.value ? "#FDF6F0" : "#332940"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="28.4%" stopColor="black" stopOpacity={1}>
-              <animate attributeName="stop-color" values="#a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="42.6%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="56.8%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="71%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="85.2%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#edf2f5; #dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec; #edf2f5;" dur="20s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="100%" stopColor={darkMode.value ? "#332940" : "#FDF6F0"} stopOpacity={1}>
-              <animate attributeName="stop-color" values="#ffffff; #edf2f5; #dbe6ec; #c9d9e2; #b7cdd9; #a5c1cf; #93b5c6; #93b5c6; #a5c1cf; #b7cdd9; #c9d9e2; #dbe6ec; #edf2f5; #ffffff;" dur="20s" repeatCount="indefinite" />
-              </stop> */}

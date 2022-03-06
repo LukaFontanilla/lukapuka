@@ -49,7 +49,7 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
         <p className={styles.codeBody}>Looker - BigQuery - Cloud Functions - Python - Javascript - Reactjs - Nextjs - PlanetScale </p>
         <br />
         <div className={styles.visCard}>
-          <p className={styles.description2}>2021 Spotify Listening History</p>
+          <p className={styles.description2}>Randomized Data Gen</p>
           <br />
           <div className={styles.nomobile}>
           {!darkMode.value ? 
@@ -57,7 +57,9 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           <ListeningChart type="animatedGradient"/>
           </div>
           :
+          <>
           <ListeningChart type="animatedGradient"/>  
+          </>
           }
           </div>
         </div>
