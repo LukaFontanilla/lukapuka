@@ -39,7 +39,7 @@ export default function Spheres() {
         <Suspense fallback={null}>
           <Sphere />
           <Grading />
-          <Environment preset="warehouse" />
+          <Environment preset="dawn" />
         </Suspense>
         <OrbitControls />
       </Canvas>
