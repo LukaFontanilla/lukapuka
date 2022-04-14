@@ -93,7 +93,7 @@ import {
     return (
       <>
       {gradient.map((g,index) =>
-        <stop offset={(index === gradient.length - 1 ? ((index +1) * gradientSteps)-5 : (index +1) * gradientSteps).toString() + '%'} stopColor="#FDF6F0" stopOpacity={1 - (index * 0.17)}>
+        <stop key={index} offset={(index === gradient.length - 1 ? ((index +1) * gradientSteps)-5 : (index +1) * gradientSteps).toString() + '%'} stopColor="#FDF6F0" stopOpacity={1 - (index * 0.17)}>
           <animate attributeName="stop-color" values={g} dur={"10s"} repeatCount="indefinite" />
         </stop>
       )}
@@ -121,7 +121,8 @@ import {
       }
     },[range])
 
-    const getXValueUSD = data => {
+    const getXValueUSD = (data: Record<string, any>) => {
+      console.log(data)
       if(randomizedData) {
         const index = randomizedData.dataObj.findIndex(obj => obj.date === data.date);
         // testData.dataObj.findIndex(obj => console.log(obj.date, data.date));
@@ -129,7 +130,7 @@ import {
       }
     };
   
-    const getXValueEuro = data => {
+    const getXValueEuro = (data: Record<string, any>) => {
       if(randomizedData) {
       const index = randomizedData.dataObj.findIndex(obj => obj.date === data.date);
       // testData.dataObj.findIndex(obj => console.log(obj.date, data.date));

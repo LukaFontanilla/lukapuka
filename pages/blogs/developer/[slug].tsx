@@ -11,6 +11,7 @@ import rehypeRaw from 'rehype-raw'
 import {getSpaceEntries, getEntry} from '../../../lib/contentful'
 import CodeBlock from "../../../components/codeBlock"
 import ListeningChart from "../../../components/ListeningChart"
+import React from 'react'
 
 interface paramsType {
   params : {
@@ -25,21 +26,24 @@ interface entryType {
   }
 }
 
+interface Props { 
+  children: React.ReactNode 
+}
 const components = {
   code: CodeBlock.code,
-  h1: (props) => <h1 className="subTitle" style={{marginTop:'1rem', marginBottom:'2rem'}}>{props.children}</h1>,
-  h2: (props) => <h2 className="blogText">{props.children}</h2>,
-  h3: (props) => <h3 className="blogText">{props.children}</h3>,
-  p: (props) => <p className="blogText">{props.children}</p>,
-  ul: (props) => <ul className="blogText">{props.children}</ul>,
-  ol: (props) => <ol className="blogText">{props.children}</ol>,
+  h1: (props: Props) => <h1 className="subTitle" style={{marginTop:'1rem', marginBottom:'2rem'}}>{props.children}</h1>,
+  h2: (props: Props) => <h2 className="blogText">{props.children}</h2>,
+  h3: (props: Props) => <h3 className="blogText">{props.children}</h3>,
+  p: (props: Props) => <p className="blogText">{props.children}</p>,
+  ul: (props: Props) => <ul className="blogText">{props.children}</ul>,
+  ol: (props: Props) => <ol className="blogText">{props.children}</ol>,
   br: () => <br />,
   hr: () => <hr className="divider"/>,
-  tr: (props) => <tr className="blogText" style={{borderTop:'0.1rem solid #c6cbd1', borderRadius:'3rem'}}>{props.children}</tr>,
-  th: (props) => <th className="blogText" style={{padding: '6px 13px',border:'0.1rem solid #dfe2e5',borderRadius:'0.5rem'}}>{props.children}</th>,
-  td: (props) => <td className="blogText" style={{padding: '6px 13px',border:'0.1rem solid #dfe2e5',borderRadius:'0.5rem'}}>{props.children}</td>,
-  P: (props) => <p style={{textAlign:"center", marginTop: '2rem'}} className="blogText">{props.children}</p>,
-  blockquote: (props) => <p className={styles.blockquote}>{props.children}</p>,
+  tr: (props: Props) => <tr className="blogText" style={{borderTop:'0.1rem solid #c6cbd1', borderRadius:'3rem'}}>{props.children}</tr>,
+  th: (props: Props) => <th className="blogText" style={{padding: '6px 13px',border:'0.1rem solid #dfe2e5',borderRadius:'0.5rem'}}>{props.children}</th>,
+  td: (props: Props) => <td className="blogText" style={{padding: '6px 13px',border:'0.1rem solid #dfe2e5',borderRadius:'0.5rem'}}>{props.children}</td>,
+  P: (props: Props) => <p style={{textAlign:"center", marginTop: '2rem'}} className="blogText">{props.children}</p>,
+  blockquote: (props: Props) => <p className={styles.blockquote}>{props.children}</p>,
   ListeningChart
 }
 
@@ -96,7 +100,6 @@ const Blog = ({entry,markdownContent}: {entry: entryType["entry"], markdownConte
         <div className={styles.cardBlog}>
         {/* <ReactMarkdown className="blogText" children={markdownContent[0]} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}/> */}
         <MDXRemote {...markdownContent[0]} components={components}/>
-        {/* @ts-expect-error */}
         <MDXRemote {...markdownContent[1]} components={components}/>
         {/* <ReactMarkdown components={CodeBlock} className="blogText" children={markdownContent[1]} rehypePlugins={[rehypeRaw]}  */}
         {/* remarkPlugins={[remarkGfm]} */}
