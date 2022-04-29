@@ -11,7 +11,7 @@ import FollowMe from '../components/FollowMe'
 export async function getStaticProps() {
   const data = await fetch('https://api.github.com/users/LukaFontanilla/repos')
   const repos =  await data.json()
-  const displayRepos = ["dynamic-dashboard-control-extension","zendesk_lookml_action","looker_oauth","sdk-examples"]
+  const displayRepos = ["dynamic-dashboard-control-extension","zendesk_lookml_action","lukapuka","sdk-examples"]
   const filteredRepos = repos
     .filter((r:any) => displayRepos.includes(r.name))
     .map((r:any) => {
