@@ -82,14 +82,14 @@ body.dark-mode .subTitle,
 body.dark-mode .footerText,
 body.dark-mode .footerRowText,
 body.dark-mode .blogRowText {
-  color: #FAFAFA;
+  color: white;
 }
 
 body.light-mode .subTitle,
 body.light-mode .footerText
 body.light-mode .footerRowText,
 body.light-mode .blogRowText {
-  color: #111;
+  color: black;
 }
 
 .subTitle2 {

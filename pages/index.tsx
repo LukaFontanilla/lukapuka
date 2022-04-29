@@ -11,7 +11,7 @@ import FollowMe from '../components/FollowMe'
 export async function getStaticProps() {
   const data = await fetch('https://api.github.com/users/LukaFontanilla/repos')
   const repos =  await data.json()
-  const displayRepos = ["dynamic-dashboard-control-extension","ef_education_extension","looker_oauth","sdk-examples"]
+  const displayRepos = ["dynamic-dashboard-control-extension","zendesk_lookml_action","looker_oauth","sdk-examples"]
   const filteredRepos = repos
     .filter((r:any) => displayRepos.includes(r.name))
     .map((r:any) => {
@@ -77,11 +77,12 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
           <div style={{display: 'flex', flexDirection: 'row', width: '100%', paddingLeft: '0.15rem'}}>
             <div className={styles.boxDivider}></div>
             <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+            <a href={r.html_url} target="_blank" rel="noreferrer">
             <div className={styles.footerRow2}>
               <h2 className="subTitle">
-              <a href={r.html_url} target="_blank" rel="noreferrer">
+              {/* <a href={r.html_url} target="_blank" rel="noreferrer"> */}
               {r.name}
-              </a>
+              {/* </a> */}
               </h2>
               <p className="subTitle2">
               {r.created_at.split('T')[0]}
@@ -99,6 +100,7 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
               {r.description}
             </p>
             }
+            </a>
             </div>
           </div>
         </div>
