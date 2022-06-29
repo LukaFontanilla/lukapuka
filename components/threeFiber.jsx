@@ -40,7 +40,7 @@ export default function Spheres() {
           <Sphere />
           <Grading />
           <Environment
-          background={true} // Whether to affect scene.background
+          background={false} // Whether to affect scene.background
           files={'warehouse.hdr'}
           path={'/'}
           />
