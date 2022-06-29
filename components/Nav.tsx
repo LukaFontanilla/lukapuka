@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import Spheres from './threeFiber'
+// import Spheres from './threeFiber'
 import {useDarkModeContext} from '../context/darkModeContext'
 
 export const Nav: React.FC = () => {
@@ -14,7 +14,7 @@ export const Nav: React.FC = () => {
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable}>
-                <Spheres />
+                {/* <Spheres /> */}
                 </div>
             </div>
         </>
