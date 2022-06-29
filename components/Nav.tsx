@@ -8,7 +8,7 @@ let Spheres: any;
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
     const [isUsed, setIsUsed] = useState(false);
-    const onHover = () => {
+    const handleHover = () => {
         setIsUsed(true)
         import('./threeFiber')
     }
@@ -20,7 +20,7 @@ export const Nav: React.FC = () => {
                 <Link href="/blogs" passHref><p className="footerRowText">Blog</p></Link>
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
-                <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onHover={onHover}>
+                <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onHover={handleHover}>
                 {/* {!isMounted || !matchMedia('(min-width: 768px)').matches ? null : (
                 <Suspense fallback={null}>
                     <Spheres />
