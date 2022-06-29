@@ -2,7 +2,7 @@ import React, {useState, useEffect, Suspense, lazy} from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import {useDarkModeContext} from '../context/darkModeContext'
-const { Spheres } = lazy(() => import('./threeFiber'));
+const Spheres = lazy(() => import('./threeFiber'));
 
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
