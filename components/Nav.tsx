@@ -1,15 +1,17 @@
-import React, {useState, useEffect, Suspense, lazy} from 'react';
+import React, {useState, useEffect, Suspense, lazy, useRef} from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import {useDarkModeContext} from '../context/darkModeContext'
-const Spheres = lazy(() => import('./threeFiber'));
+// const Spheres = lazy(() => import('./threeFiber'));
+let Spheres: any;
 
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
-    const [isMounted, setIsMounted] = useState(false);
-        useEffect(() => {
-            setIsMounted(true);
-    }, []);
+    const [isUsed, setIsUsed] = useState(false);
+    const onHover = () => {
+        setIsUsed(true)
+        import('./threeFiber')
+    }
 
     return (
         <>
@@ -19,11 +21,12 @@ export const Nav: React.FC = () => {
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable}>
-                {!isMounted || !matchMedia('(min-width: 768px)').matches ? null : (
+                {/* {!isMounted || !matchMedia('(min-width: 768px)').matches ? null : (
                 <Suspense fallback={null}>
                     <Spheres />
                 </Suspense>
-                )}
+                )} */}
+                {!isUsed ? null : <Spheres />}
                 </div>
             </div>
         </>
