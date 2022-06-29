@@ -20,7 +20,7 @@ export const Nav: React.FC = () => {
                 <Link href="/blogs" passHref><p className="footerRowText">Blog</p></Link>
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
-                <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable}>
+                <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onHover={onHover}>
                 {/* {!isMounted || !matchMedia('(min-width: 768px)').matches ? null : (
                 <Suspense fallback={null}>
                     <Spheres />
