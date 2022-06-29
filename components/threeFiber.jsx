@@ -39,7 +39,11 @@ export default function Spheres() {
         <Suspense fallback={null}>
           <Sphere />
           <Grading />
-          <Environment preset="dawn" />
+          <Environment
+          background={true} // Whether to affect scene.background
+          files={'kiara_1_dawn_1k.hdr'}
+          path={'/'}
+          />
         </Suspense>
         <OrbitControls />
       </Canvas>
