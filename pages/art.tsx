@@ -23,27 +23,27 @@ const Art = () => {
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
             height="200rem" width="200rem" 
-            layout="responsive" sizes="1vw"/>
+             sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower copy.png" 
             height="200rem" width="200rem" 
-            layout="responsive" sizes="1vw"/>
+             sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
             height="200rem" width="200rem" 
-            layout="responsive" sizes="1vw"/>
+             sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
             height="200rem" width="200rem" 
-            layout="responsive" sizes="1vw"/>
+             sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
             height="200rem" width="200rem" 
-            layout="responsive" sizes="1vw"/>
+             sizes="1vw"/>
             </div>
             </>
         </div>
