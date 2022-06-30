@@ -14,7 +14,7 @@ export const Nav: React.FC = () => {
     const renderSphere = () => {
         if(!isUsed || !matchMedia('(min-width: 768px)').matches) {
             return (
-                <div styles={{
+                <div style={{
                     display: "flex",
                     width: "4rem",
                     height: "4rem",
@@ -25,7 +25,7 @@ export const Nav: React.FC = () => {
 
         if(isUsed && !matchMedia('(min-width: 768px)').matches) {
             return (
-                <div styles={{
+                <div style={{
                     display: "flex",
                     width: "4rem",
                     height: "4rem",
