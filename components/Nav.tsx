@@ -11,6 +11,36 @@ export const Nav: React.FC = () => {
         setIsUsed(true)
     }
 
+    const renderSphere = () => {
+        if(!isUsed || !matchMedia('(min-width: 768px)').matches) {
+            return (
+                <div styles={{
+                    display: "flex",
+                    width: "4rem",
+                    height: "4rem",
+                    borderRadius: "50%"}}>
+                </div>
+            )
+        }
+
+        if(isUsed && !matchMedia('(min-width: 768px)').matches) {
+            return (
+                <div styles={{
+                    display: "flex",
+                    width: "4rem",
+                    height: "4rem",
+                    borderRadius: "50%"}}>
+                </div>
+            )
+        }
+
+        return (
+            <Suspense fallback={null}>
+                <Spheres />
+            </Suspense>
+        )
+    }
+
     return (
         <>
             <div className={styles.nav}>
@@ -19,11 +49,7 @@ export const Nav: React.FC = () => {
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
-                {!isUsed || !matchMedia('(min-width: 768px)').matches ? null : (
-                <Suspense fallback={null}>
-                    <Spheres />
-                </Suspense>
-                )}
+                    {renderSphere()}
                 </div>
             </div>
         </>
