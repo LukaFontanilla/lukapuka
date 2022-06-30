@@ -368,7 +368,7 @@
     transition: color 0.15s ease, border-color 0.15s ease;
     box-shadow: 0 0.5px 5px 0.5px grey;
     max-width: 18rem;
-    width:33%;
+    width:30%;
     height: auto;
     min-width: 10rem;
     /* background-color: white; */
@@ -468,6 +468,7 @@
     }
 
     .artCard {
+      margin-left: 1rem;;
       width: 18rem;
       max-width: 20rem ;
     }
