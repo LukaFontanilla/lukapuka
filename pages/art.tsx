@@ -24,19 +24,29 @@ const Art = () => {
         <div className={styles.artGrid}>
             <>
             <div className={styles.artCard}>
-            <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem" quality={98} placeholder="blur" sizes="20vw"/>
+            <Image src="/ocean-flower-purple copy.png" 
+            // height="200rem" width="200rem" 
+            quality={98} placeholder="blur" sizes="20vw"/>
             </div>
             <div className={styles.artCard}>
-            <Image src="/ocean-flower copy.png" height="200rem" width="200rem" quality={98} placeholder="blur" sizes="20vw"/>
+            <Image src="/ocean-flower copy.png" 
+            // height="200rem" width="200rem" 
+            quality={98} placeholder="blur" sizes="20vw"/>
             </div>
             <div className={styles.artCard}>
-            <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem" quality={98} placeholder="blur" sizes="20vw"/>
+            <Image src="/ocean-flower-purple copy.png" 
+            // height="200rem" width="200rem" 
+            quality={98} placeholder="blur" sizes="20vw"/>
             </div>
             <div className={styles.artCard}>
-            <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem" quality={98} placeholder="blur" sizes="20vw"/>
+            <Image src="/ocean-flower-purple copy.png" 
+            // height="200rem" width="200rem" 
+            quality={98} placeholder="blur" sizes="20vw"/>
             </div>
             <div className={styles.artCard}>
-            <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem" quality={98} placeholder="blur" sizes="20vw"/>
+            <Image src="/ocean-flower-purple copy.png" 
+            // height="200rem" width="200rem" 
+            quality={98} placeholder="blur" sizes="20vw"/>
             </div>
             </>
         </div>
