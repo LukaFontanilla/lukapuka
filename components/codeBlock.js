@@ -1,6 +1,6 @@
 import React from "react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import {dracula, coy, solarizedLight, vscDarkPlus, shadesOfPurple} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {dracula, solarizedLight, vscDarkPlus, shadesOfPurple} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import {useDarkModeContext} from '../context/darkModeContext'
 
 const CodeBlock = {

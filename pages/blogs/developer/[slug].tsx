@@ -1,14 +1,9 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../../styles/Home.module.css'
-import {Entry} from 'contentful'
-import ReactMarkdown from 'react-markdown'
+import { Entry } from 'contentful'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import {getSpaceEntries, getEntry} from '../../../lib/contentful'
+import { getSpaceEntries, getEntry } from '../../../lib/contentful'
 import CodeBlock from "../../../components/codeBlock"
 import ListeningChart from "../../../components/ListeningChart"
 import React from 'react'

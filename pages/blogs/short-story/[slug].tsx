@@ -1,12 +1,10 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../../styles/Home.module.css'
-import {Entry} from 'contentful'
+import { Entry } from 'contentful'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import {getSpaceEntries, getEntry} from '../../../lib/contentful'
+import { getSpaceEntries, getEntry } from '../../../lib/contentful'
 
 interface paramsType {
     params : {

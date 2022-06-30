@@ -1,11 +1,10 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType } from 'next'
+import type { InferGetStaticPropsType } from 'next'
 import { useState } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {createClient} from 'contentful'
-import {EntryCollection, Entry, EntryFields } from 'contentful'
-import ReactMarkdown from 'react-markdown'
+import { Entry } from 'contentful'
 
 export async function getStaticProps() {
   const client = createClient({

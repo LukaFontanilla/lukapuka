@@ -1,5 +1,5 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType, GetStaticProps } from 'next'
-import { useState, ReactNode } from 'react';
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+import { useState } from 'react';
 import {projectDetails} from '../lib/notion'
 import styled from "styled-components"
 import {useDarkModeContext} from '../context/darkModeContext'

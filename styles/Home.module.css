@@ -38,7 +38,6 @@
   .main {
     /* min-height: 100vh; */
     padding: 0rem 10rem 0rem 10rem;
-    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -278,6 +277,7 @@
     align-content: flex-start;
     flex-basis: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
     /* flex-wrap: wrap; */
     /* flex-direction: row; */
     overflow-x: auto;
@@ -461,10 +461,15 @@
     margin-left: 0.5rem;
   }
   
-  @media (max-width: 600px) {
-    .grid {
+  @media (max-width: 650px) {
+    .grid, .artGrid {
       width: 100%;
       flex-direction: column;
+    }
+
+    .artCard {
+      width: 18rem;
+      max-width: 20rem ;
     }
   }
   

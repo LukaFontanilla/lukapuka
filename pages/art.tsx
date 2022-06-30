@@ -1,6 +1,3 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType } from 'next'
-import { useState } from 'react';
-import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
@@ -25,28 +22,28 @@ const Art = () => {
             <>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            // height="200rem" width="200rem" 
-            quality={98} placeholder="blur" sizes="20vw"/>
+            height="200rem" width="200rem" 
+            layout="responsive" sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower copy.png" 
-            // height="200rem" width="200rem" 
-            quality={98} placeholder="blur" sizes="20vw"/>
+            height="200rem" width="200rem" 
+            layout="responsive" sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            // height="200rem" width="200rem" 
-            quality={98} placeholder="blur" sizes="20vw"/>
+            height="200rem" width="200rem" 
+            layout="responsive" sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            // height="200rem" width="200rem" 
-            quality={98} placeholder="blur" sizes="20vw"/>
+            height="200rem" width="200rem" 
+            layout="responsive" sizes="1vw"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            // height="200rem" width="200rem" 
-            quality={98} placeholder="blur" sizes="20vw"/>
+            height="200rem" width="200rem" 
+            layout="responsive" sizes="1vw"/>
             </div>
             </>
         </div>
