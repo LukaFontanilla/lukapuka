@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-      <Script strategy="lazyOnload">
+      <Script strategy="lazyOnload" id="my-script">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           })
         `}
       </Script>
-      
+
       {/* using dark mode provider to give the ../components/codeBlock & Nav components a shared state value to subscribe to */}
       <DarkModeWrapper>
         <Layout>
