@@ -5,7 +5,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { getSpaceEntries, getEntry } from '../../../lib/contentful'
-import { Users } from '../../../components/Comments'
 import { useState } from "react"
 
 interface paramsType {
@@ -58,15 +57,6 @@ interface paramsType {
         <ReactMarkdown  className="blogText" children={entry.entryData.fields.body} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}/>
         </div>
         <div>
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          Click me load more
-        </button>
-        <Users count={count} />
-        <div style={{ display: 'none' }}><Users count={count + 1}/></div>
         </div>
       </>
     )
