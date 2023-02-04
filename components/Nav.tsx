@@ -47,6 +47,7 @@ export const Nav: React.FC = () => {
                 <Link href="/" passHref><p className="footerRowText">Home</p></Link>
                 <Link href="/blogs" passHref><p className="footerRowText">Blog</p></Link>
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
+                {/* <Link href="/visualizations" passHref><p className="footerRowText">Visualizations</p></Link> */}
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
                     {renderSphere()}

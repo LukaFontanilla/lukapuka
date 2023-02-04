@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import ExampleViz from '../components/echartsViz'
 
 const Art = () => {
     return (
@@ -12,6 +13,9 @@ const Art = () => {
           pieces that pull through my own personal sketches. All pieces incorporate a linear gradient/color scheme, additionally each of these are built into their own
           reusable card components that accept a few props: color (limited to the color duplicates created in figma), dark mode, as well as an optional animation.
         </p>
+        {/* <div style={{width:'100%', height:'60rem'}}>
+        <ExampleViz />
+        </div> */}
         <h3 className="subTitle">
             Search for Art Pieces by Tag
         </h3>

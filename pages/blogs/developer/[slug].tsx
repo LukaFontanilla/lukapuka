@@ -4,6 +4,7 @@ import { Entry } from 'contentful'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getSpaceEntries, getEntry } from '../../../lib/contentful'
+import Comments from "../../../components/Comments"
 import CodeBlock from "../../../components/codeBlock"
 import ListeningChart from "../../../components/ListeningChart"
 import React from 'react'
@@ -49,6 +50,7 @@ export async function getStaticProps({params}: paramsType) {
 
   return { 
     props: {
+      entryId: params.slug,
       entry: entry,
       markdownContent: [markdownContentOne, markdownContentTwo]
     }
@@ -63,7 +65,7 @@ export async function getStaticPaths() {
   }
 }
 
-const Blog = ({entry,markdownContent}: {entry: entryType["entry"], markdownContent:Record<any,any>}) => {
+const Blog = ({entryId,entry,markdownContent}: {entryId: string, entry: entryType["entry"], markdownContent:Record<any,any>}) => {
   const tags = entry.entryData.fields.topicTags.split(',').map((e:string) => e.trim())
   return (
     <>
@@ -100,6 +102,9 @@ const Blog = ({entry,markdownContent}: {entry: entryType["entry"], markdownConte
         {/* remarkPlugins={[remarkGfm]} */}
         {/* /> */}
         </div>
+        <>
+          <Comments id={entryId}/>
+        </>
         </div>
       {/* </main>
     </div> */}

@@ -10,7 +10,8 @@ const CodeBlock = {
     return !inline && match ? (
       <div style={{aspectRatio:3, marginTop:'2rem',marginBottom:'2rem'}}>
         <SyntaxHighlighter 
-          style={darkMode.value ? dracula : solarizedLight}
+          // style={darkMode.value ? dracula : solarizedLight}
+          style={dracula}
           // using inline styles to set fix width of code block otherwse it stretches beyond parent container width in blog posts
           customStyle={{maxWidth: '45rem', maxWidthoverflowX: 'scroll', fontSize: '0.8rem',border:'0.8rem transparent', borderRadius:'0.5rem'}}
           showLineNumbers="True"

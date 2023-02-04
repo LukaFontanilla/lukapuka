@@ -47,7 +47,7 @@ export default function Spheres() {
         </Suspense>
         <OrbitControls />
       </Canvas>
-      <Loader />
+      {/* <Loader /> */}
     </>
   )
 }

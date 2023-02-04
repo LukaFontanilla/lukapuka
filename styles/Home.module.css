@@ -325,7 +325,7 @@
     flex-wrap: wrap;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    width: inherit;
+    width: 50rem;
   }
   
   .imageStyle {
@@ -349,8 +349,8 @@
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
     box-shadow: 0 0.5px 5px 0.5px grey;
-    max-width: 18rem;
-    width:30%;
+    max-width: 20rem;
+    width:40%;
     height: auto;
     min-width: 10rem;
     /* background-color: white; */
@@ -385,7 +385,8 @@
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
     box-shadow: 0 0.5px 5px 0.5px grey;
-    width: inherit;
+    width: 100%;
+    overflow-wrap: break-word;
     height: auto;
     min-width: 10rem;
     /* background-color: white; */
@@ -461,10 +462,19 @@
     margin-left: 0.5rem;
   }
   
-  @media (max-width: 650px) {
+  @media (max-width: 52rem) {
     .grid, .artGrid {
-      width: 100%;
+      min-width: 28rem;
       flex-direction: column;
+    }
+
+    .grid2 {
+      width: 28rem;
+    }
+
+    .card {
+      max-width: 27rem;
+      width: 100%;
     }
 
     .artCard {

@@ -10,7 +10,7 @@ import {
   import { format, parseISO, subDays } from "date-fns";
   import styles from '../styles/Home.module.css'
   import {useDarkModeContext} from '../context/darkModeContext'
-  import React, {useState, useEffect} from 'react'
+  import React, {useState, useEffect, memo} from 'react'
   import faker from '@faker-js/faker'
 
   // linear gradient component
@@ -103,7 +103,7 @@ import {
   
   //
   
-  export default function ListeningChart({type}:{type:string}) {
+  export default memo(function ListeningChart({type}:{type:string}) {
     const darkMode = useDarkModeContext()
     const [range, setRange] = useState<number>()
     const [randomizedData, setRandomizedData] = useState<DataGenerator>()
@@ -210,7 +210,7 @@ import {
         </ResponsiveContainer>
         </div>
     );
-  }
+  })
   
   function CustomTooltip({ active, payload, label, type }: {active?:any,payload?:any,label?:any,type?:any}) {
     console.log(payload)
