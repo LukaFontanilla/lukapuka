@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css'
 import ExampleViz, {ReactECharts} from '../components/echartsViz'
 import useSWR from 'swr'
 
-const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json())
+// const fetcher = (...args: any) => fetch(...args).then((res) => res.json())
 
 // series options
 // {
@@ -71,11 +71,11 @@ let option = {
 
 
 const Art = () => {
-    const { data, error } = useSWR('/api/duckdbconn', fetcher)
+    // const { data, error } = useSWR('/api/duckdbconn', fetcher)
     // console.log(data)
-    const echartsData = data?.map(d => [d.date, d.JPY, d.KRW])
+    // const echartsData = data?.map(d => [d.date, d.JPY, d.KRW])
     
-    option.dataset.source = echartsData
+    // option.dataset.source = echartsData
 
     // option.xAxis[0].data.push(x_axis)
     // option.series.push({
@@ -89,8 +89,8 @@ const Art = () => {
     //   data: y_axis_jpy
     // })
 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    // if (error) return <div>Failed to load</div>
+    // if (!data) return <div>Loading...</div>
 
     return (
         <>

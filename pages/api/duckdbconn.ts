@@ -8,8 +8,8 @@ export default async function dbHandler(
     const duckdb = require('duckdb');
     const db = new duckdb.Database(':memory:');
     const con = db.connect()
-    const execute = (statement) => new Promise((resolve, reject) => {
-        con.all(statement, function (err, res) {
+    const execute = (statement:any) => new Promise((resolve, reject) => {
+        con.all(statement, function (err: any, res:any) {
         if (err) {
             reject(err);
         }
