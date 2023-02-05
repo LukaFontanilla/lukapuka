@@ -26,23 +26,23 @@ const Art = () => {
             <>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            height="200rem" width="200rem" sizes="20vw"/>
+            height="200rem" width="200rem" sizes="20vw" alt="ocean flower purple"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower copy.png" 
-            height="200rem" width="200rem" sizes="20vw"/>
+            height="200rem" width="200rem" sizes="20vw" alt="ocean flower"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            height="200rem" width="200rem" sizes="20vw"/>
+            height="200rem" width="200rem" sizes="20vw" alt="ocean flower purple"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            height="200rem" width="200rem" sizes="20vw"/>
+            height="200rem" width="200rem" sizes="20vw" alt="ocean flower purple"/>
             </div>
             <div className={styles.artCard}>
             <Image src="/ocean-flower-purple copy.png" 
-            height="200rem" width="200rem" sizes="20vw"/>
+            height="200rem" width="200rem" sizes="20vw" alt="ocean flower purple"/>
             </div>
             </>
         </div>

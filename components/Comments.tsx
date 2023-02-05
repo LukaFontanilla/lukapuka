@@ -79,10 +79,6 @@ export default function Comments({id}:{id:any}) {
   // signed in user is an object, signed out user is null
   const [user] = useAuthState(auth)
 
-  useEffect(() => {
-    console.log(messages)
-  },[])
-
   const [formValue, setFormValue] = useState('');
 
   const sendMessage = async (e:any) => {
@@ -125,7 +121,10 @@ export default function Comments({id}:{id:any}) {
           )
           : <SignIn />
         }
-        {messages !== undefined && messages.map((msg => <UserDisplay message={msg} messagesRef={messagesRef} />))}
+        {messages !== undefined && messages.map((msg,index) => {
+          <UserDisplay key={index} message={msg} messagesRef={messagesRef} />
+          }
+        )}
         </div>
       </div>
     );
