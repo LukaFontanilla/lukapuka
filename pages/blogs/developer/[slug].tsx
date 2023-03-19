@@ -9,6 +9,7 @@ import CodeBlock from "../../../components/codeBlock"
 import ListeningChart from "../../../components/ListeningChart"
 import React from 'react'
 
+
 interface paramsType {
   params : {
     slug: string
@@ -103,7 +104,7 @@ const Blog = ({entryId,entry,markdownContent}: {entryId: string, entry: entryTyp
         {/* /> */}
         </div>
         <>
-          <Comments id={entryId}/>
+        {entryId && <Comments id={entryId} />}
         </>
         </div>
       {/* </main>

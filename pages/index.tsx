@@ -1,6 +1,4 @@
-import type { NextPage,NextApiRequest, NextApiResponse, InferGetStaticPropsType } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
+import type { InferGetStaticPropsType } from 'next'
 import styles from '../styles/Home.module.css'
 import {projectDetails} from '../lib/notion'
 import {useDarkModeContext} from '../context/darkModeContext'
@@ -27,37 +25,29 @@ const Home = ({filteredRepos, completed}: InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-        <div style={{maxHeight:'2rem', display: 'flex', flexDirection:'row', justifyContent:'space-between', alignContent:'flex-end',alignItems:'flex-end'}}>
-          <h1 className="title">
-            Luka "lukapuka" Fontanilla △▼△▼△▼△▼△
-          </h1>
-          {/* <Image src="/ocean-flower-purple copy.png" height="200rem" width="200rem"/> */}
-        </div>
         <h2 className="subTitle">
-          Customer Engineer, Developer Products @ Google Cloud / Looker
+          Embedded Analytics, Developer Products @ the big G
         </h2>
         <p className={styles.codeBody}>
           Hello!
           I'm Luka. I develop both practical and non practical applications by trade... and work with data. 
-          In my personal life I mostly surf around SC with close friends, hike/run in our coastal mountains, and experiement with different food recipes while dancing with my indoor mini trees to a variety of music.{' '}
+          In my personal life I mostly surf around Santa Cruz County with close friends, hike/run in our coastal mountains, and experiement with different food recipes while dancing with my indoor mini trees to a variety of music.{' '}
           <br/>
           <br />
           {/* <blockquote style={{borderLeft: '2px solid #ccc',padding: '0.5em 10px'}}>This website is both a personal project with the</blockquote> */}
-          Jamstack but also a place to share who I am what I do and hopefully expose curious minds to neat content and applications.
+          This website is both a personal project, a canvas for expirementing with new technologies but also a place to share who I am what I do and hopefully expose curious minds to neat content and applications.
         </p>
-        <p className={styles.description2}>Technologies I work with Daily:</p>
-        <p className={styles.codeBody}>Looker - BigQuery - Cloud Functions - Python - Javascript - Reactjs - Nextjs - PlanetScale </p>
+        <p className={styles.description2}>Technologies & Languages I work with Daily:</p>
+        <p className={styles.codeBody}>Google Cloud Products | Any & All Javascript | Python | DuckDB | Data Viz </p>
         <br />
         <div className={styles.visCard}>
-          <p className={styles.description2}>Randomized Data Gen</p>
-          <br />
           <div className={styles.nomobile}>
           {!darkMode.value ? 
-          <div className={styles.codeBody}>
-          <ListeningChart type="animatedGradient"/>
-          </div>
+          <></>
           :
           <>
+          <p className={styles.description2}>Randomized Data Gen</p>
+          <br />
           <ListeningChart type="animatedGradient"/>  
           </>
           }

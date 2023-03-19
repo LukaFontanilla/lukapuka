@@ -13,7 +13,7 @@ export const DarkModeWrapper: React.FC = ({ children }) => {
     - enabled: function to toggle dark mode
     - disabled: function to toggle light mode
     */ 
-    const darkMode = useDarkMode(true);
+    const darkMode = useDarkMode(false);
   
     return (
       <darkModeContext.Provider value={darkMode}>

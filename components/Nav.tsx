@@ -2,7 +2,8 @@ import React, {useState, useEffect, Suspense, lazy, useRef} from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import {useDarkModeContext} from '../context/darkModeContext'
-const Spheres = lazy(() => import('./threeFiber'));
+import Spheres from './threeFiber'
+// const Spheres = lazy(() => import('./threeFiber'));
 
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
@@ -35,7 +36,7 @@ export const Nav: React.FC = () => {
         }
 
         return (
-            <Suspense fallback={null}>
+            <Suspense fallback={<></>}>
                 <Spheres />
             </Suspense>
         )
@@ -50,7 +51,8 @@ export const Nav: React.FC = () => {
                 {/* <Link href="/visualizations" passHref><p className="footerRowText">Visualizations</p></Link> */}
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
-                    {renderSphere()}
+                    {/* {renderSphere()} */}
+                    <Spheres />
                 </div>
             </div>
         </>

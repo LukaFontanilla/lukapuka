@@ -4,3 +4,4 @@ declare module '@faker-js/faker' {
     export default faker;
   }
 declare module 'react-svelte';
+declare module 'react-lottie';

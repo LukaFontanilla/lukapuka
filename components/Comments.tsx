@@ -1,34 +1,16 @@
 import useSWR from "swr";
 import axios from "axios";
 import styles from '../styles/Home.module.css'
-import { initializeApp } from "firebase/app";
-import { getAnalytics, isSupported } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { getFirestore, collection, orderBy, limit, query, serverTimestamp, addDoc, setDoc } from 'firebase/firestore'
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { collection, orderBy, limit, query, serverTimestamp, addDoc, setDoc } from 'firebase/firestore'
 import Image from "next/image"
 import { GoHubot, GoCheck } from "react-icons/go"
-
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
-import { useEffect, useRef, useState, memo } from "react";
+import { useCollectionDataOnce, useCollectionData } from 'react-firebase-hooks/firestore'
+import { auth, firestore, analytics } from '../lib/firebase'
+import { useEffect, useState } from "react";
 
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-}
-
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
-const firestore = getFirestore(app)
-const analytics = getAnalytics(app);
-isSupported()
-
-function SignIn() {
+function SignIn({auth}:{auth: any}) {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider()
     await signInWithPopup(auth, provider)
@@ -38,14 +20,14 @@ function SignIn() {
   )
 }
 
-function SignOut() {
+function SignOut({auth}:{auth: any}) {
   return auth.currentUser &&  (
     <div onClick={() => auth.signOut()} className={styles.footerRow}><p className='blogText'>Sign Out with Google</p></div>
   )
 }
 
 function UserDisplay(props:any) {
-  const { message, messagesRef } = props
+  const { message, messagesRef, auth } = props
 
   const messageClass = message.uid === auth.currentUser?.uid ? 'lightblue' : 'transparent'
 
@@ -73,13 +55,12 @@ function UserDisplay(props:any) {
 
 
 export default function Comments({id}:{id:any}) {
+  // signed in user is an object, signed out user is null
   const messagesRef = collection(firestore, id)
   const firestoreQuery = query(messagesRef, orderBy('createdAt'),limit(20))
-  const [messages] = useCollectionData(firestoreQuery)
-  // signed in user is an object, signed out user is null
-  const [user] = useAuthState(auth)
-
+  const [messages, loading] = useCollectionData(firestoreQuery)
   const [formValue, setFormValue] = useState('');
+  const [user] = useAuthState(auth)
 
   const sendMessage = async (e:any) => {
     e.preventDefault()
@@ -98,34 +79,40 @@ export default function Comments({id}:{id:any}) {
     // const address = `https://randomuser.me/api/?results=${count}&seed=abcd`;
     // const fetcher = async (url: string) => await axios.get(url).then((res) => res.data);
     // const { data, error } = useSWR(address, fetcher);
-  
-    return (
-      <div className={styles.cardBlog}>
-        <div>
-          {user ? (
-            <>
-            <div style={{display:'flex', flexDirection:'row', justifyContent: 'flex-start',alignItems:'center', alignContent:'space-between', marginBottom:'2rem'}}>
-                <div className="field">
-                <input 
-                value={formValue} 
-                onChange={(e) => setFormValue(e.target.value)} 
-                placeholder="say something nice" 
-                />
-                </div>
-                <div style={{marginRight:'4rem'}}>
-                <GoCheck size={30} onClick={sendMessage} fill="white" aria-label="Add new item"/>
-                </div>
-              <SignOut />
-            </div>
-            </>
-          )
-          : <SignIn />
-        }
-        {messages !== undefined && messages.map((msg,index) => {
-          <UserDisplay key={index} message={msg} messagesRef={messagesRef} />
+    if(messages == undefined) {
+      return (
+        <SignIn  auth={auth}/>
+      )
+    }
+
+      return (
+        <div className={styles.cardBlog}>
+          <div>
+            {user ? (
+              <>
+              <div style={{display:'flex', flexDirection:'row', justifyContent: 'flex-start',alignItems:'center', alignContent:'space-between', marginBottom:'2rem'}}>
+                  <div className="field">
+                  <input 
+                  value={formValue} 
+                  onChange={(e) => setFormValue(e.target.value)} 
+                  placeholder="say something nice" 
+                  />
+                  </div>
+                  <div style={{marginRight:'4rem'}}>
+                  <GoCheck size={30} onClick={sendMessage} fill="white" aria-label="Add new item"/>
+                  </div>
+                <SignOut auth={auth}/>
+              </div>
+              </>
+            )
+            : <SignIn  auth={auth}/>
           }
-        )}
+          {messages.map((msg:any,index:number) => {
+              // <UserDisplay key={index} message={msg} messagesRef={messagesRef} />
+              <p>{JSON.stringify(msg)}</p>
+            }
+          )}
+          </div>
         </div>
-      </div>
-    );
+      );
   };

@@ -3,7 +3,7 @@ import React from 'react';
 export const Footer: React.FC = () => {
     return (
         <>
-        <div style={{padding: "4rem 10rem 4rem 10rem"}}>
+        <div style={{padding: "4rem 0rem 4rem 0rem"}}>
           <footer style={{borderTop: '1px solid #eaeaea'}}>
           <br/>
           <br/>
