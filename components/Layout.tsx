@@ -185,6 +185,9 @@ export const Layout: React.FC = ({children}) => {
                 <>{AnimationComponent()}</>
             :
                 <div className={styles.main}>
+                    <div style={{maxHeight:"2rem", display:"flex", flexDirection:"row", justifyContent:"space-between",alignContent:"flex-end",alignItems:"flex-end"}}>
+                        <h1 className="title">Luka "lukapuka" Fontanilla △▼△▼△▼△▼△</h1>
+                    </div>
                     {children}
                 </div>
             }

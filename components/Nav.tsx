@@ -52,7 +52,7 @@ export const Nav: React.FC = () => {
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
                     {/* {renderSphere()} */}
-                    <Spheres />
+                    {/* <Spheres /> */}
                 </div>
             </div>
         </>
