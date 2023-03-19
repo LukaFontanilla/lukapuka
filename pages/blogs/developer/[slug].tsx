@@ -4,7 +4,7 @@ import { Entry } from 'contentful'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getSpaceEntries, getEntry } from '../../../lib/contentful'
-import Comments from "../../../components/Comments"
+// import Comments from "../../../components/Comments"
 import CodeBlock from "../../../components/codeBlock"
 import ListeningChart from "../../../components/ListeningChart"
 import React from 'react'
@@ -103,9 +103,9 @@ const Blog = ({entryId,entry,markdownContent}: {entryId: string, entry: entryTyp
         {/* remarkPlugins={[remarkGfm]} */}
         {/* /> */}
         </div>
-        <>
+        {/* <>
         {entryId && <Comments id={entryId} />}
-        </>
+        </> */}
         </div>
       {/* </main>
     </div> */}

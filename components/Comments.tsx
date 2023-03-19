@@ -108,8 +108,8 @@ export default function Comments({id}:{id:any}) {
             : <SignIn  auth={auth}/>
           }
           {messages.map((msg:any,index:number) => {
-              // <UserDisplay key={index} message={msg} messagesRef={messagesRef} />
-              <p>{JSON.stringify(msg)}</p>
+              <UserDisplay key={index} message={msg} messagesRef={messagesRef} />
+              // <p>{JSON.stringify(msg)}</p>
             }
           )}
           </div>
