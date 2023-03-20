@@ -14,13 +14,13 @@ function Grading() {
 function Sphere(props) {
   const texture = useTexture('/terrazo.png')
   const [hovered, hover] = useState(false)
-  const ref = useRef(null)
-  useFrame((state, delta) => ref.current && (ref.current.rotation.x += 0.01))
+  // const ref = useRef(null)
+  // useFrame((state, delta) => ref.current && (ref.current.rotation.x += 0.01))
 
   return (
     <mesh 
     {...props} 
-    ref={ref}
+    // ref={ref}
     onPointerOver={(event) => hover(true)}
     onPointerOut={(event) => hover(false)}
     >
@@ -36,7 +36,6 @@ export default function Spheres() {
     {/* @ts-ignore  */}
       <Canvas frameloop="demand" dpr={[1, 2]} camera={{ position: [0, 0, 5], fov: 45 }}>
         <spotLight intensity={4} angle={0.2} penumbra={1} position={[5, 15, 10]} />
-        <Suspense fallback={null}>
           <Sphere />
           <Grading />
           <Environment
@@ -44,8 +43,7 @@ export default function Spheres() {
           files={'warehouse.hdr'}
           path={'/'}
           />
-        </Suspense>
-        <OrbitControls />
+        {/* <OrbitControls /> */}
       </Canvas>
       {/* <Loader /> */}
     </>

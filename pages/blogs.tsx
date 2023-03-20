@@ -73,6 +73,7 @@ const Blogs = ({entries}: InferGetStaticPropsType<typeof getStaticProps>) => {
         <h3 className="subTitle">
           Short Stories
         </h3>
+        <div className={styles.grid} style={{maxHeight:'25rem'}}>
         {!searchValue && (shortStoryBlogs.map((v:Entry<any>,k) => 
             <>
             <div className={styles.card}>
@@ -83,6 +84,7 @@ const Blogs = ({entries}: InferGetStaticPropsType<typeof getStaticProps>) => {
             </div>
             </>
         ))}
+        </div>
         </>
         )}
         {searchValue && (

@@ -266,6 +266,8 @@
   .grid {
     display: flex;
     flex: 1;
+    height: auto;
+    max-height: 40rem;
     align-items: flex-start;
     align-content: flex-start;
     flex-basis: 100%;
@@ -470,12 +472,60 @@
     height: 1em;
     margin-left: 0.5rem;
   }
-  
+
+  .hero {
+    height: 70rem;
+    width: 60rem; 
+    position: absolute; 
+    top:-6rem;
+    right:-6rem;
+    z-index:-1; 
+  }
+
+  .heroTransition {
+      height: 40rem; 
+      width: 50rem;
+      position:absolute;
+      right:0rem;
+      top:0rem;
+      z-index:-1;
+      transition: all 1s ease-in;
+  }
+
+  .heroTitle {
+    padding: 4rem 0rem 18rem 0rem;
+    max-height: 2rem;
+    display: flex;
+    flex-direction:row; 
+    justify-content:space-between;
+    align-content:flex-end;
+    align-items:flex-end;
+  }
+
   @media (max-width: 52rem) {
     .grid, .artGrid {
       min-width: 28rem;
       flex-direction: column;
+      align-content: center;
     }
+
+    .hero {
+      width: 60rem;
+      top: -7rem;
+      right:-10rem;
+      height: 60rem; 
+    }
+
+    .heroTitle {
+      padding: 4rem 0rem 4rem 0rem;
+    }
+
+    .heroTransition {
+      /* height: ;  */
+      right:0rem;
+      top: -12rem;
+      width: 100%;
+  }
 
     .grid2 {
       width: 28rem;
@@ -490,6 +540,11 @@
       margin-left: 1rem;;
       width: 18rem;
       max-width: 20rem ;
+    }
+
+    .container {
+      max-width: 30rem;
+      /* width: 30rem; */
     }
   }
   

@@ -2,8 +2,9 @@ import React, {useState, useEffect, Suspense, lazy, useRef} from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import {useDarkModeContext} from '../context/darkModeContext'
-import Spheres from './threeFiber'
-// const Spheres = lazy(() => import('./threeFiber'));
+// import Spheres from './threeFiber'
+import dynamic from 'next/dynamic'
+const Spheres = dynamic(() => import('./threeFiber'),{ssr:true});
 
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
@@ -44,14 +45,14 @@ export const Nav: React.FC = () => {
 
     return (
         <>
-            <div className={styles.nav}>
+            <div className={styles.nav} style={{opacity:'1'}} id="nav">
                 <Link href="/" passHref><p className="footerRowText">Home</p></Link>
                 <Link href="/blogs" passHref><p className="footerRowText">Blog</p></Link>
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 {/* <Link href="/visualizations" passHref><p className="footerRowText">Visualizations</p></Link> */}
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
-                    {/* {renderSphere()} */}
+                    {renderSphere()}
                     {/* <Spheres /> */}
                 </div>
             </div>

@@ -32,15 +32,15 @@ export const Layout: React.FC = ({children}) => {
                 if(asPath === '/') {
                     const heroCss = { height: '40rem', width: '50rem',position:'absolute', right:'0rem',top:'0rem',zIndex:'-1',transition: 'all 1s ease-in' }
                     const hero = document.getElementById("hero")
-                    if(hero) Object.assign(hero.style,heroCss);
-                }
-                const scrollSection = document.getElementById("scrollSection")
-                if(scrollSection) {
-                    scrollSection.style.overflowY = ""
-                    scrollSection.style.maxHeight = ""
-                    scrollSection.style.paddingTop = "0rem"
-                    if(player.current) {
-                        player.current.play()
+                    if(hero) hero.classList.add(styles.heroTransition)//Object.assign(hero.style,heroCss);
+                    const scrollSection = document.getElementById("scrollSection")
+                    if(scrollSection) {
+                        scrollSection.style.overflowY = ""
+                        scrollSection.style.maxHeight = ""
+                        scrollSection.style.paddingTop = "0rem"
+                        if(player.current) {
+                            player.current.play()
+                        }
                     }
                 }
             }
@@ -52,6 +52,9 @@ export const Layout: React.FC = ({children}) => {
         if(scrollOpacity) {
             console.log(parseFloat(scrollOpacity?.style.opacity) + 0.015)
             scrollOpacity.style.opacity = String(parseFloat(scrollOpacity?.style.opacity) + 0.01425)
+            // if(document.getElementById("nav")) {
+            //     document.getElementById("nav").style.opacity = String(document.getElementById("nav").style.opacity + 0.01425)
+            // }
         }
     }, [scrollPosition])
 
@@ -119,9 +122,7 @@ export const Layout: React.FC = ({children}) => {
         if(asPath === '/') {
             return (
                 <>
-                <div style={{padding: '4rem 0rem 18rem 0rem', maxHeight:'2rem', display: 'flex', flexDirection:'row', 
-                justifyContent:'space-between', alignContent:'flex-end',alignItems:'flex-end'
-                }}>
+                <div className={styles.heroTitle}>
                     <h1 className="title">
                         Luka "lukapuka" Fontanilla △▼△▼△▼△▼△
                     </h1>
@@ -134,7 +135,8 @@ export const Layout: React.FC = ({children}) => {
                     controls={true}
                     src={JSON.stringify(animationDisplay(asPath))}
                     // @ts-ignore
-                    style={animationStyles(asPath)}
+                    style={asPath !== '/' && { height: '12rem', width: '50rem',position:'absolute',top:'4.5rem', right:'8rem',zIndex:'-1' }}
+                    className={styles.hero}
                 />
                 <div id="scrollOpacity" style={{opacity: '0.01'}}>
                     <div ref={scrollRef} id="scrollSection" onScroll={onScroll} className={styles.hideScrollBar} style={{paddingTop: '60rem', maxHeight:'40rem', overflowY:"scroll"}}>
@@ -144,7 +146,7 @@ export const Layout: React.FC = ({children}) => {
                         </div>
                     </div>
                 </div>
-            </>
+                </>
             )
         } else {
             return (

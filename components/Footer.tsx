@@ -7,9 +7,9 @@ export const Footer: React.FC = () => {
           <footer style={{borderTop: '1px solid #eaeaea'}}>
           <br/>
           <br/>
-          <text className="footerText">
+          <p className="footerText">
           ┏(＾0＾)┛  ꕥ  ┗(＾0＾) ┓
-          </text>
+          </p>
           </footer>
         </div>
       </>
