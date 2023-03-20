@@ -4,7 +4,7 @@ import Link from 'next/link'
 import {useDarkModeContext} from '../context/darkModeContext'
 // import Spheres from './threeFiber'
 import dynamic from 'next/dynamic'
-const Spheres = dynamic(() => import('./threeFiber'),{ssr:true});
+// const Spheres = dynamic(() => import('./threeFiber'),{ssr:true});
 
 export const Nav: React.FC = () => {
     const darkMode = useDarkModeContext()
@@ -38,7 +38,7 @@ export const Nav: React.FC = () => {
 
         return (
             <Suspense fallback={<></>}>
-                <Spheres />
+                {/* <Spheres /> */}
             </Suspense>
         )
     }
@@ -52,7 +52,7 @@ export const Nav: React.FC = () => {
                 {/* <Link href="/visualizations" passHref><p className="footerRowText">Visualizations</p></Link> */}
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
                 <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
-                    {renderSphere()}
+                    {/* {renderSphere()} */}
                     {/* <Spheres /> */}
                 </div>
             </div>
