@@ -51,11 +51,29 @@ export const Nav: React.FC = () => {
                 <Link href="/art" passHref><p className="footerRowText">Art</p></Link>
                 {/* <Link href="/visualizations" passHref><p className="footerRowText">Visualizations</p></Link> */}
                 <Link href="/projects" passHref><p className="footerRowText">Project Plans</p></Link>
-                <div className={styles.footerRowTextIcon} onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
+                <div className={styles.footerRowTextIcon} 
+                onClick={darkMode.value ? darkMode.disable : darkMode.enable} onMouseOver={handleHover}>
                     {/* {renderSphere()} */}
                     {/* <Spheres /> */}
+                    {/* XO */}
+                    <DarkModeToggle />
                 </div>
             </div>
         </>
     )  
+}
+
+const DarkModeToggle = () => {
+    const darkMode = useDarkModeContext()
+
+    useEffect(() => {
+        Array.from(document.getElementsByTagName("path")).forEach((el) => el.id === "petals" ? darkMode.value ? el.setAttribute("stroke","white") : el.setAttribute("stroke","black") : console.log(''))
+    },[darkMode.value])
+    return (
+        <div style={{position:'relative', right:'17rem', top:'-4.5rem'}}>
+        <svg style={{overflow: "visible", margin: "0px"}}>
+            <g className="flower"><path id="petals" fill="none" stroke="white" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(0)scale(0.2)"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(22.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(45)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(67.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(90)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(112.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(135)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(157.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(180)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(202.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(225)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(247.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(270)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(292.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(315)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><path id="petals" fill="none" stroke="rgb(255, 255, 255)" strokeWidth="2" d="M2,0 C50,40 50,70 20,100 L0,85 L-20,100 C-50,70 -50,40 2,0" transform="translate(300,100)rotate(337.5)scale(0.2)" strokeDasharray="291.75946044921875 291.75946044921875" strokeDashoffset="0"></path><circle r="60" fill="none" transform="translate(300, 100)scale(0.6)" style={{filter: "url(&quot;#motionFilter&quot;);"}}></circle></g><defs><filter id="motionFilter" width="400%" x="-100%"><feGaussianBlur in="SourceGraphic" stdDeviation="18 6"></feGaussianBlur></filter></defs>
+        </svg>
+        </div>
+    )
 }
