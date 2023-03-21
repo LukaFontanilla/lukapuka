@@ -151,7 +151,7 @@ export const Layout: React.FC = ({children}) => {
         } else {
             return (
                 <>
-                <Player
+                {/* <Player
                     ref={player} // set the ref to your class instance
                     autoplay={true}
                     loop={true}
@@ -159,7 +159,7 @@ export const Layout: React.FC = ({children}) => {
                     src={JSON.stringify(animationDisplay(asPath))}
                     // @ts-ignore
                     style={animationStyles(asPath)}
-                />
+                /> */}
                 <div ref={scrollRef} id="scrollSection" onScroll={onScroll} className={styles.hideScrollBar} style={{paddingTop: '2rem'}}>
                     {/* @ts-ignore */}
                     <div className={styles.main} ref={containerRef}>
